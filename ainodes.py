@@ -145,19 +145,13 @@ class RGBtoRYGCBM:
     def INPUT_TYPES(s):
         return {"required": {
             "image": ("IMAGE",),
-            "threshold": ("FLOAT", {
-                "default": 0.5,
-                "min": 0.0,
-                "max": 1.0,
-                "step": 0.01
-            }),
         }}
     
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "convert"
     CATEGORY = "custom_node_experiments"
 
-    def convert(self, image, threshold):
+    def convert(self, image):
         # Получаем размеры входного изображения [batch, height, width, channels]
         batch, height, width, channels = image.shape
         
@@ -168,10 +162,10 @@ class RGBtoRYGCBM:
         # Создаем выходной тензор для 6 каналов
         result = torch.zeros((batch, height, width, 6), device=image.device, dtype=image.dtype)
         
-        # Получаем RGB каналы и применяем порог к ним
-        R = torch.where(image[..., 0] > threshold, image[..., 0], torch.zeros_like(image[..., 0]))
-        G = torch.where(image[..., 1] > threshold, image[..., 1], torch.zeros_like(image[..., 1]))
-        B = torch.where(image[..., 2] > threshold, image[..., 2], torch.zeros_like(image[..., 2]))
+        # Получаем RGB каналы
+        R = image[..., 0]
+        G = image[..., 1]
+        B = image[..., 2]
         
         # Вычисляем смешанные цвета
         Y = torch.minimum(R, G)  # Желтый (минимум из R и G)
