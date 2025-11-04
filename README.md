@@ -1,4 +1,4 @@
-AI 圖像處理實驗室 (AI Image Processing Lab Nodes)
+MAX-AI 圖像處理實驗室 (MAX-AI Image Processing Lab Nodes)
 ==================================================
 
 這是一個為 ComfyUI 設計的自定義節點集合，包含各種圖像處理、顏色轉換和實用工具，特別是為高階圖像合成和對齊工作流程而優化。
@@ -102,3 +102,4 @@ ImageStitcher 節點的部分邏輯和結構，以及部分顏色處理節點，
 📝 備註
 * 由於 SIFT 算法是計算密集型的，在使用 ImageStitcher 時，如果輸入圖過大，建議先在 feature_detection_size_mode 中選擇一個適中的參考尺寸，以提高性能和匹配成功率。
 * 此節點集仍在實驗階段 (custom_node_experiments 分類)，功能可能會根據需求進行調整和優化。
+
