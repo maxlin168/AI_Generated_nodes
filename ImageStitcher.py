@@ -730,6 +730,7 @@ class ImageScaleToQwen:
         s = s.movedim(1,-1)
         return (s,)
 
+# 1. 類別映射 (ComfyUI 用來找到您的 Python 類別)
 NODE_CLASS_MAPPINGS = {
     "ImageScaleToTotalPixelsRound64": ImageScaleToTotalPixelsRound64,
     "ImageBlendLighter": ImageBlendLighter,
@@ -744,6 +745,26 @@ NODE_CLASS_MAPPINGS = {
     "LABtoRGB": LABtoRGB,
     "ImageMirrorPad": ImageMirrorPad,
     "ImageCropBorders": ImageCropBorders,
-    "ImageStitcher": ImageStitcher,
+    "ImageStitcher": ImageStitcher, # 關鍵的拼接節點
     "ImageScaleToQwen":ImageScaleToQwen,
+}
+
+# 2. 顯示名稱映射 (ComfyUI 用來在右鍵選單中顯示更友好的名稱)
+NODE_DISPLAY_NAME_MAPPINGS = {
+    # 這裡的鍵必須與 NODE_CLASS_MAPPINGS 的鍵一致！
+    "ImageScaleToTotalPixelsRound64": "圖像縮放 (64x 總像素)",
+    "ImageBlendLighter": "圖像疊加 (Lighter)",
+    "ImageOffset": "圖像偏移/捲動",
+    "RGBtoRYGCBM": "顏色轉換 (RGB -> RYGCBM)",
+    "RYGCBMtoRGB": "顏色轉換 (RYGCBM -> RGB)",
+    "ExtractImageChannel": "提取圖像通道",
+    "MatchRYGCBMColors": "顏色匹配 (RYGCBM)",
+    "TextCommaToWeighted": "文本加權 (統一)",
+    "TextCommaToRandomWeighted": "文本加權 (隨機)",
+    "RGBtoLAB": "顏色轉換 (RGB -> LAB)",
+    "LABtoRGB": "顏色轉換 (LAB -> RGB)",
+    "ImageMirrorPad": "圖像邊緣鏡像填充",
+    "ImageCropBorders": "圖像邊緣裁剪",
+    "ImageStitcher": "圖像自動對齊/拼接 (SIFT)", # 讓這個關鍵節點名稱更明確
+    "ImageScaleToQwen": "圖像縮放 (Qwen 兼容)",
 }
